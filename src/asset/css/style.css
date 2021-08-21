@@ -1,0 +1,21 @@
+html, body {
+    height: 100%;
+}
+
+.demo-title {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.microphone-icon {
+    font-size: 80px;
+}
+
+.microphone-icon.active {
+    color: green;
+}
+
+.page-content {
+    padding-left: 50px;
+    padding-right: 50px;
+}
