@@ -37,11 +37,13 @@ function SpeechDemo() {
     const [loading, setLoading] = useState(false);
     const [result, setResult] = useState();
     const [tableData, setTableData] = useState();
+    const [error, setError] = useState(false);
 
     const onRecordingClick = () => {
         if (!isRecording) {
             resetRecord();
             startRecord();
+            setError(false);
         } else {
             stopRecord();
         }
@@ -50,6 +52,7 @@ function SpeechDemo() {
     const onNewSentenceClick = () => {
         let newSentence = generateSentence();
         setSentence(newSentence);
+        setError(false);
     }
 
     const recognizeSpeech = () => {
@@ -90,6 +93,7 @@ function SpeechDemo() {
             .catch((err) => {
                 console.log(err);
                 setLoading(false);
+                setError(true);
             });
     }
 
@@ -127,6 +131,13 @@ function SpeechDemo() {
                     </Row>
                     <Row align="middle" justify="center">
                         <Table dataSource={tableData} columns={columns} />
+                    </Row>
+                </>
+                : <></>}
+            {error ?
+                <>
+                    <Row align="middle" justify="center" style={{ paddingTop: 30 }}>
+                        <Title level={3}>Đã có lỗi xảy ra</Title>
                     </Row>
                 </>
                 : <></>}
